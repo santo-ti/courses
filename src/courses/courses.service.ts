@@ -1,20 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { COURSES } from './courses.mock';
-import { CourseDto } from './course.dto';
-
-export interface Course {
-  id: number;
-  title: string;
-  description: string;
-}
-export type Courses = Course[];
+import { CourseDto } from './dtos/course.dto';
+import { Course } from './entities/course..entity';
 
 @Injectable()
 export class CoursesService {
-  private readonly courses: Courses = COURSES;
+  private readonly courses: Course[] = COURSES;
 
-  findAll(): Promise<Courses> {
-    return new Promise<Courses>((resolve, reject) => {
+  findAll(): Promise<Course[]> {
+    return new Promise<Course[]>((resolve, reject) => {
       try {
         resolve(this.courses);
       } catch (err) {
